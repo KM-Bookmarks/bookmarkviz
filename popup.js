@@ -1,7 +1,7 @@
 
 function createChart(chromeData) {
-    var w = 1000,
-        h = 800,
+    var w = 780,
+        h = 580,
         index = 0,
         chartNodes = [],
         chartLinks = [];
