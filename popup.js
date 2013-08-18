@@ -131,11 +131,12 @@ function createChart(chromeData) {
             .attr('r', 20);
 
         //Update the tooltip position and value
-        d3.select("#tooltip")
+        var tooltip = d3.select("#tooltip")
             .style("left", xPosition + "px")
             .style("top", yPosition + "px")
-            .style("background-color", color)
-            .select("#title")
+            .style("background-color", color);
+
+        tooltip.select("#title")
             .text(d.title);
 
         //Show the tooltip
