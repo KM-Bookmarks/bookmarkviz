@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>Dataviz my bookmarks</title>
+    <style>
+        div, td, th { color: black; }
+        .node {
+          stroke: #fff;
+          stroke-width: 1.5px;
+          cursor: pointer;
+        }
+
+        .link {
+          stroke: #999;
+          stroke-opacity: .6;
+        }
+        #chart {
+            position: relative; /*tooltip is absolute*/
+        }
+        #tooltip {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            padding: 10px;
+            background-color: white;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+        #tooltip.hidden {
+            display: none;
+        }
+        #tooltip p {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 20px;
+        }
+    </style>
+    <script charset="UTF-8" src="jquery.min.js"></script>
+    <script charset="UTF-8" src="underscore.js"></script>
+    <script charset="UTF-8" src="d3.js"></script>
+    <script charset="UTF-8" src="popup.js"></script>
+</head>
+
+<body style="width: 1000px">
+    <div id="chart">
+        <div id="tooltip" class="hidden">
+            <p id="title">title</p>
+            <p><span id="url">url</span></p>
+        </div>
+    </div>
+
+</body>
+</html>
