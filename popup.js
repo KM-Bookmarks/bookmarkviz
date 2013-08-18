@@ -108,16 +108,45 @@ function createChart(chromeData) {
         .call(force.drag);
 
     //default browser title
-    nodes.append("title")
-          .text(function(d) {
-            //console.log("title: "+d.title);
-            return d.title; });
+    // nodes.append("title")
+    //       .text(function(d) {
+    //         //console.log("title: "+d.title);
+    //         return d.title; });
 
     //open the url on dbclick
     //the single click drags the circles around :)
     nodes.on('dblclick', function(d) {
-        console.log(JSON.stringify(d.url));
+        //console.log(JSON.stringify(d.url));
         window.open(d.url);
+    });
+
+    nodes.on('mouseover', function(d) {
+        //find x, y position
+        var xPosition = parseFloat(d3.select(this).attr("x")),
+            yPosition = parseFloat(d3.select(this).attr("y")),
+            color = d3.select(this).style("fill");
+
+        // make the circle bigger
+        d3.select(this)
+            .attr('r', 20);
+
+        //Update the tooltip position and value
+        d3.select("#tooltip")
+            .style("left", xPosition + "px")
+            .style("top", yPosition + "px")
+            .style("background-color", color)
+            .select("#title")
+            .text(d.title);
+
+        //Show the tooltip
+        d3.select("#tooltip").classed("hidden", false);
+    })
+    .on("mouseout", function(d) {
+        d3.select(this)
+            .transition()
+            .duration(250)
+            .attr('r', 10);
+        d3.select("#tooltip").classed("hidden", true);
     });
 
     //Every time the simulation "ticks", this will be called
