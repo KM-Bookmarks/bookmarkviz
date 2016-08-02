@@ -71,15 +71,15 @@ function createChart(chromeData) {
      * Initialize a default force layout,
      * using the nodes and links in dataset
      */
-    var force = d3.layout.force()
+    var force = d3.forceSimulation()
          .nodes(dataset.nodes)
-         .links(dataset.links)
-         .size([w, h])
-         .linkDistance([50])
-         .charge([-120])
-         .start();
+         .force("link", d3.forceLink(dataset.links).distance(50))
+         .force("charge", d3.forceManyBody().strength(-120))
+         ;
+//         .size([w, h])
+//         .linkDistance([50])
 
-    var colors = d3.scale.category20();
+    var colors = d3.scaleOrdinal(d3.schemeCategory20);
 
     //Create SVG element
     var svg = d3.select("#chart")
@@ -105,7 +105,7 @@ function createChart(chromeData) {
         .style("fill", function(d) {
             return colors(d.parentId);
         })
-        .call(force.drag);
+        .call(d3.drag());   // Really not sure about this one !!!
 
     //default browser title
     // nodes.append("title")
